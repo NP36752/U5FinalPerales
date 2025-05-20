@@ -10,6 +10,11 @@ public class Target : MonoBehaviour
     private float maxTorque = 10;
     private float xRange = 4;
     private float ySpawnPos = -6;
+    public AudioClip nukeBallSound;
+    public AudioClip eightBallSound;
+    public AudioClip eyeBallSound;
+    public AudioClip skullSound;
+    private AudioSource ballSounds;
     private GameManager gameManager;
     public int pointValue;
     public ParticleSystem explosionParticle;
@@ -21,6 +26,7 @@ public class Target : MonoBehaviour
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
         transform.position = RandomSpawnPos();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        ballSounds = GetComponent<AudioSource>();
     }
     Vector3 RandomForce()
     {
@@ -34,7 +40,7 @@ public class Target : MonoBehaviour
     {
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         Destroy(gameObject);
         gameManager.UpdateScore(pointValue);
@@ -42,6 +48,19 @@ public class Target : MonoBehaviour
         if(gameObject.CompareTag("Bad"))
         {
             gameManager.UpdateLives();
+            ballSounds.PlayOneShot(skullSound);
+        }
+        if(gameObject.CompareTag("Eyeball"))
+        {
+            ballSounds.PlayOneShot(eyeBallSound);
+        }
+        if(gameObject.CompareTag("NukeBall"))
+        {
+            ballSounds.PlayOneShot(nukeBallSound);
+        }
+        if(gameObject.CompareTag("8Ball"))
+        {
+            ballSounds.PlayOneShot(eightBallSound);
         }
     }
     private void OnTriggerEnter(Collider other)

@@ -3,7 +3,12 @@ guid: a867c5917de153740b818adf8674e2ea
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - nukeBallSound: {fileID: 8300000, guid: ec976c812493bc240ba02f8b0b607058, type: 3}
+  - eightBallSound: {fileID: 8300000, guid: 514a473809786df4b952242aad2f4900, type: 3}
+  - eyeBallSound: {fileID: 8300000, guid: e92d9e337ae652445934825ce0bfa7c0, type: 3}
+  - skullSound: {fileID: 8300000, guid: f52435212d12a3645bc811610f9f4e90, type: 3}
+  - explosionParticle: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

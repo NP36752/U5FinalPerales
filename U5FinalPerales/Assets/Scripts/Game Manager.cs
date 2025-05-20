@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     public Button restartButton;
     public int lives;
+
 
 
     public void StartGame(int difficulty)
@@ -76,5 +78,5 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }    
+    }
 }
