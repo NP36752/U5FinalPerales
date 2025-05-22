@@ -11,14 +11,15 @@ public class GameManager : MonoBehaviour
     public List<GameObject> targets;
     private float spawnRate = 5.0f;
     public bool isGameActive;
+    public bool isPaused = false;
     private int score;
+    public int lives;
     public GameObject titleScreen;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI livesText;
+    public GameObject pauseScreen;
     public Button restartButton;
-    public int lives;
-
 
 
     public void StartGame(int difficulty)
@@ -78,5 +79,24 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGameActive && !isPaused)
+        {
+            isPaused = true;
+            isGameActive = false;
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Space) && !isGameActive && isPaused)
+        {
+            isGameActive = true;
+            isPaused = false;
+            Time.timeScale = 1;
+            pauseScreen.SetActive(false);
+        }
     }
 }

@@ -18,6 +18,7 @@ public class Target : MonoBehaviour
     private GameManager gameManager;
     public int pointValue;
     public ParticleSystem explosionParticle;
+    bool outOfBounds = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,22 +46,9 @@ public class Target : MonoBehaviour
         Destroy(gameObject);
         gameManager.UpdateScore(pointValue);
         Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-        if(gameObject.CompareTag("Bad"))
+        if (gameObject.CompareTag("Bad"))
         {
             gameManager.UpdateLives();
-            ballSounds.PlayOneShot(skullSound);
-        }
-        if(gameObject.CompareTag("Eyeball"))
-        {
-            ballSounds.PlayOneShot(eyeBallSound);
-        }
-        if(gameObject.CompareTag("NukeBall"))
-        {
-            ballSounds.PlayOneShot(nukeBallSound);
-        }
-        if(gameObject.CompareTag("8Ball"))
-        {
-            ballSounds.PlayOneShot(eightBallSound);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -68,16 +56,31 @@ public class Target : MonoBehaviour
         if (gameManager.isGameActive)
         {
             Destroy(gameObject);
+            outOfBounds = true;
             if (!gameObject.CompareTag("Bad"))
             {
                 gameManager.UpdateLives();
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        if (gameObject.CompareTag("Bad") && !outOfBounds)
+        {
+            ballSounds.PlayOneShot(skullSound);
+        }
+        if (gameObject.CompareTag("Eyeball") && !outOfBounds)
+        {
+            ballSounds.PlayOneShot(eyeBallSound);
+        }
+        if (gameObject.CompareTag("NukeBall") && !outOfBounds)
+        {
+            ballSounds.PlayOneShot(nukeBallSound);
+        }
+        if (gameObject.CompareTag("8Ball") && !outOfBounds)
+        {
+            ballSounds.PlayOneShot(eightBallSound);
+        }
+        // i gave up on adding sound effects when the balls are destroyed i cant figure it out
     }
 }

@@ -151,9 +151,10 @@ MonoBehaviour:
   nukeBallSound: {fileID: 8300000, guid: ec976c812493bc240ba02f8b0b607058, type: 3}
   eightBallSound: {fileID: 8300000, guid: 514a473809786df4b952242aad2f4900, type: 3}
   eyeBallSound: {fileID: 8300000, guid: e92d9e337ae652445934825ce0bfa7c0, type: 3}
-  skullSound: {fileID: 0}
+  skullSound: {fileID: 8300000, guid: f52435212d12a3645bc811610f9f4e90, type: 3}
   pointValue: 1
   explosionParticle: {fileID: 7535607469619513247, guid: ac10190cf200c4f7e881ca8e41d3d760, type: 3}
+  outOfBounds: 0
 --- !u!82 &5468932852855914644
 AudioSource:
   m_ObjectHideFlags: 0
